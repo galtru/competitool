@@ -6,9 +6,21 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y --no-install-recommends xvfb \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Python deps first (layer is cached unless pyproject.toml changes)
+# Install dependencies first for better layer caching.
+# We don't install the package itself — PYTHONPATH=/app handles module resolution.
 COPY pyproject.toml .
-RUN pip install --no-cache-dir .
+RUN pip install --no-cache-dir \
+    "fastapi>=0.111" \
+    "uvicorn[standard]>=0.29" \
+    "playwright>=1.44" \
+    "pydantic>=2.7" \
+    "pydantic-settings>=2.0" \
+    "pyyaml>=6.0" \
+    "aiofiles>=23.0" \
+    "httpx>=0.27" \
+    "aiosqlite>=0.20" \
+    "rq>=1.16" \
+    "redis>=5.0"
 
 # Sync the Chromium binary to match the installed playwright version
 RUN playwright install chromium
