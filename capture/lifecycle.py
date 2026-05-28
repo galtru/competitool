@@ -8,14 +8,31 @@ from playwright.async_api import Page
 
 logger = logging.getLogger(__name__)
 
+_SHADOW_TRAVERSAL_JS = """
+    // Recursively search for video elements, piercing open shadow roots
+    function findAllVideos(root) {
+        const found = [];
+        try {
+            found.push(...Array.from(root.querySelectorAll('video')));
+            for (const el of root.querySelectorAll('*')) {
+                if (el.shadowRoot) found.push(...findAllVideos(el.shadowRoot));
+            }
+        } catch(e) {}
+        return found;
+    }
+    function findVisibleVideo(root) {
+        for (const v of findAllVideos(root)) {
+            const r = v.getBoundingClientRect();
+            if (r.width > 0 && r.height > 0) return v;
+        }
+        return null;
+    }
+"""
+
 _PLAY_SCRIPT = """
 async () => {
-    // Find the first visible video element
-    const videos = Array.from(document.querySelectorAll('video'));
-    const visible = videos.find(v => {
-        const r = v.getBoundingClientRect();
-        return r.width > 0 && r.height > 0;
-    });
+""" + _SHADOW_TRAVERSAL_JS + """
+    const visible = findVisibleVideo(document);
     if (visible) {
         visible.muted = false;
         try { await visible.play(); } catch(e) {}
@@ -27,7 +44,8 @@ async () => {
 
 _SCROLL_TO_VIDEO_SCRIPT = """
 () => {
-    const video = document.querySelector('video');
+""" + _SHADOW_TRAVERSAL_JS + """
+    const video = findVisibleVideo(document);
     if (video) {
         video.scrollIntoView({ behavior: 'instant', block: 'center' });
         return true;
@@ -81,8 +99,19 @@ async ([stepPx, pauseMs, maxScrollPx]) => {
     let scrolled = 0;
     let videoFoundAt = null;
 
+    function findAllVideos(root) {
+        const found = [];
+        try {
+            found.push(...Array.from(root.querySelectorAll('video')));
+            for (const el of root.querySelectorAll('*')) {
+                if (el.shadowRoot) found.push(...findAllVideos(el.shadowRoot));
+            }
+        } catch(e) {}
+        return found;
+    }
+
     const findVisibleVideo = () => {
-        for (const v of document.querySelectorAll('video')) {
+        for (const v of findAllVideos(document)) {
             const r = v.getBoundingClientRect();
             if (r.width > 10 && r.height > 10) return v;
         }
