@@ -1,0 +1,55 @@
+{
+  "log": {
+    "version": "1.2",
+    "entries": [
+      {
+        "request": {
+          "method": "GET",
+          "url": "https://pubads.g.doubleclick.net/gampad/ads?iu=/12345/video-player&sz=640x480&cust_params=hb_pb%3D3.50%26hb_bidder%3Dappnexus%26hb_size%3D640x480%26hb_uuid%3Dabc123%26env%3Dinstream&ad_type=video&output=vast&unviewed_position_start=1&pmad=4&pmxd=120000",
+          "headers": [],
+          "postData": null
+        },
+        "response": {
+          "status": 200,
+          "headers": [{"name": "content-type", "value": "text/xml"}],
+          "content": {"mimeType": "text/xml", "size": 1024, "text": ""}
+        },
+        "startedDateTime": "2026-05-27T10:00:01.000Z",
+        "time": 150
+      },
+      {
+        "request": {
+          "method": "POST",
+          "url": "https://ib.adnxs.com/ut/v3/prebid",
+          "headers": [{"name": "content-type", "value": "application/json"}],
+          "postData": {
+            "mimeType": "application/json",
+            "text": "{\"id\":\"auction-1\",\"imp\":[{\"id\":\"1\",\"video\":{\"mimes\":[\"video/mp4\"],\"protocols\":[2,3,5,6]}}],\"user\":{\"ext\":{\"eids\":[{\"source\":\"pubcid.org\",\"uids\":[{\"id\":\"shared-id-abc\",\"atype\":1}]},{\"source\":\"id5-sync.com\",\"uids\":[{\"id\":\"ID5-xyz\",\"atype\":1}]},{\"source\":\"uidapi.com\",\"uids\":[{\"id\":\"uid2-abc\",\"atype\":3}]},{\"source\":\"liveramp.com\",\"uids\":[{\"id\":\"lr-abc\",\"atype\":3}]}]}}}"
+          }
+        },
+        "response": {
+          "status": 200,
+          "headers": [{"name": "content-type", "value": "application/json"}],
+          "content": {"mimeType": "application/json", "size": 512, "text": "{\"id\":\"auction-1\",\"seatbid\":[{\"bid\":[{\"price\":3.50}],\"seat\":\"appnexus\"}]}"}
+        },
+        "startedDateTime": "2026-05-27T10:00:00.500Z",
+        "time": 200
+      },
+      {
+        "request": {
+          "method": "GET",
+          "url": "https://id5-sync.com/api/id",
+          "headers": [],
+          "postData": null
+        },
+        "response": {
+          "status": 200,
+          "headers": [],
+          "content": {"mimeType": "application/json", "size": 64, "text": ""}
+        },
+        "startedDateTime": "2026-05-27T10:00:00.100Z",
+        "time": 50
+      }
+    ]
+  }
+}

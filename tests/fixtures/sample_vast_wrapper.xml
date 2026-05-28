@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VAST version="4.0">
+  <Ad id="1">
+    <Wrapper>
+      <AdSystem>WrapperAdServer</AdSystem>
+      <VASTAdTagURI><![CDATA[https://ads.example.com/vast2]]></VASTAdTagURI>
+      <Impression><![CDATA[https://wrapper-tracker.example.com/impression]]></Impression>
+      <Creatives/>
+    </Wrapper>
+  </Ad>
+</VAST>

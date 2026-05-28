@@ -1,0 +1,50 @@
+player: truvid
+
+prebid:
+  version: "8.20.0"
+  bidders:
+    - amazon
+    - appnexus
+    - criteo
+    - pubmatic
+    - rubicon
+    - smartadserver
+    - teads
+  timeout_ms: 1500
+  floors_module: false
+  mode: client_side
+  wrapped_player: truvid
+
+ima:
+  present: true
+  header_bidding_integrated: false
+  gam_network_ids:
+    - "22247219933"   # Truvid primary
+    - "22065771467"   # Truvid secondary
+    - "23282230532"   # Truvid tertiary
+  # publisher supplies their own network ID alongside Truvid's
+
+identity:
+  eids:
+    - criteo
+    - id5
+
+pod:
+  max_ads: 5
+  max_duration_s: 180
+  midroll: false
+
+floors:
+  active: false
+  dynamic: false
+  waterfall_strategy: letter_encoded  # ad unit suffix encodes tier, e.g. VVVBTRVD / VVEATRVD
+
+contextual_signal:
+  cust_params_keys:
+    - article_id
+    - content_type
+    - display_mode
+    - yb_domain
+    - yb_platform
+  # cat_* keys appear per publisher (e.g. cat_g4food), counted separately
+  richness_band: low

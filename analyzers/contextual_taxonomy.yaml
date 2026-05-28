@@ -1,0 +1,198 @@
+# Seed taxonomy for cust_params key classification.
+# Add keys here to extend without changing code.
+# Each category has:
+#   exact:          case-insensitive exact key matches
+#   prefix_patterns: key startswith any of these (case-insensitive)
+#   suffix_patterns: key endswith any of these (case-insensitive)
+
+content_identity:
+  exact:
+    - article_id
+    - nws_id
+    - nwsctr_id
+    - source_id
+    - content_id
+    - cms_id
+    - video_id
+    - story_id
+    - post_id
+    - asset_id
+  prefix_patterns: []
+  suffix_patterns:
+    - _id
+
+content_taxonomy:
+  exact:
+    - vertical
+    - themes
+    - category
+    - section
+    - program
+    - tags
+    - topic
+    - iab_cat
+    - genre
+    - subcategory
+    - channel
+    - series
+  prefix_patterns:
+    - iab_
+    - cat_
+  suffix_patterns:
+    - _category
+    - _taxonomy
+    - _topic
+
+content_attributes:
+  exact:
+    - article_type
+    - page
+    - page_type
+    - content_type
+    - display_mode
+    - isBreakingNews
+    - isSponsored
+    - lng
+    - language
+    - source
+    - video
+    - isArticleBrandSafe
+    - is_live
+    - is_premium
+    - is_video
+    - author
+    - pub_date
+  prefix_patterns:
+    - is_
+  suffix_patterns: []
+
+brand_safety:
+  exact:
+    - ABS
+    - BSC
+    - gv_brand_safety
+    - iab_brand_safety
+    - bs_score
+    - brand_safety
+  prefix_patterns: []
+  suffix_patterns:
+    - _brand_safe
+    - _brand_safety
+    - _bs_score
+
+audience_signal:
+  exact:
+    - IDS
+    - AnonymisedClientId
+    - AnonymisedSignalLift
+    - audience
+    - segment
+    - cohort
+    - user_segment
+    - ppid
+    - uid
+    - user_id
+    - hashed_email
+  prefix_patterns:
+    - seg_
+    - aud_
+  suffix_patterns:
+    - _segment
+    - _audience
+
+geo:
+  exact:
+    - country
+    - geo
+    - region
+    - city
+    - dma
+    - postal
+    - zip
+    - lat
+    - lon
+    - timezone
+  prefix_patterns:
+    - geo_
+  suffix_patterns: []
+
+device_environment:
+  exact:
+    - device
+    - os
+    - browser
+    - viewport
+    - connection
+    - platform
+    - screen
+    - ua
+    - yb_platform
+  prefix_patterns: []
+  suffix_patterns: []
+
+commercial:
+  exact:
+    - order
+    - floor
+    - cpm
+    - price
+    - deal_id
+    - line_item
+    - creative_id
+    - priority
+  prefix_patterns: []
+  suffix_patterns:
+    - _floor
+    - _cpm
+    - _price
+
+technical:
+  exact:
+    - commit
+    - api_key
+    - qt_loaded
+    - technical_tags
+    - unblockia
+    - CMP_accepted
+    - itr
+    - od_ccd
+    - od_pf_nr
+    - od_pfs
+    - odtag_status
+    - gdpr
+    - consent
+    - ab_test
+    - experiment
+    - variant
+    - debug
+  prefix_patterns:
+    - od_
+    - tech_
+    - _debug
+  suffix_patterns:
+    - _loaded
+    - _status
+    - _flag
+    - _tag
+    - _test
+    - _variant
+    - _accepted
+
+url_context:
+  exact:
+    - url
+    - domains
+    - top_url
+    - referrer
+    - words
+    - kw
+    - keywords
+    - slug
+    - path
+    - yb_domain
+  prefix_patterns: []
+  suffix_patterns:
+    - _url
+    - _slug
+    - _path
+    - _domain

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VAST version="4.0">
+  <Ad id="1">
+    <InLine>
+      <AdSystem>TestAdServer</AdSystem>
+      <AdTitle>Test Ad</AdTitle>
+      <Advertiser>example-advertiser.com</Advertiser>
+      <Impression><![CDATA[https://tracker.example.com/impression]]></Impression>
+      <Creatives>
+        <Creative id="1">
+          <Linear skipoffset="00:00:05">
+            <Duration>00:00:30</Duration>
+            <TrackingEvents>
+              <Tracking event="start"><![CDATA[https://tracker.example.com/start]]></Tracking>
+              <Tracking event="complete"><![CDATA[https://tracker.example.com/complete]]></Tracking>
+              <Tracking event="midpoint"><![CDATA[https://tracker.example.com/midpoint]]></Tracking>
+            </TrackingEvents>
+            <MediaFiles>
+              <MediaFile delivery="progressive" type="video/mp4" width="1280" height="720">
+                <![CDATA[https://cdn.example.com/ad.mp4]]>
+              </MediaFile>
+            </MediaFiles>
+          </Linear>
+        </Creative>
+      </Creatives>
+    </InLine>
+  </Ad>
+</VAST>
